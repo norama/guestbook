@@ -1,12 +1,12 @@
 export type TDepartment = 'Marketing' | 'IT' | 'Sales' | 'Management' | 'Accounting'
 
-export type TGuest = {
+export type TVisitor = {
   name: string
   email: string
   department: TDepartment
 }
 
-export type TGuestForm = TGuest & {
+export type TVisitorForm = TVisitor & {
   agreement: boolean
 }
 

@@ -1,13 +1,14 @@
 import { Box } from '@mui/material'
-import AddGuestForm from './form/AddGuestForm'
 import GuestBookHeader from './header/GuestBookHeader'
+import AddVisitorForm from './form/AddVisitorForm'
+import VisitorsTable from './table/VisitorsTable'
 
 const GuestBook = () => (
   <>
     <GuestBookHeader />
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, padding: 5 }}>
-      <AddGuestForm />
-      <AddGuestForm />
+      <AddVisitorForm />
+      <VisitorsTable />
     </Box>
   </>
 )

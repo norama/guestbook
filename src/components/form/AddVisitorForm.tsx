@@ -1,13 +1,18 @@
 import { Card, CardContent, CardActions, Typography } from '@mui/material'
 import { Form, Field } from 'react-final-form'
-import type { TGuestForm } from 'types'
+import type { TVisitorForm } from 'types'
 import { ResetButton, SubmitButton, TextInput, SelectInput, CheckboxInput } from './widgets'
+import { GuestBookStore } from 'stores'
 
 const DEPARTMENTS = ['Marketing', 'IT', 'Sales', 'Management', 'Accounting']
 
-const AddGuestForm = () => {
-  const onSubmit = (values: TGuestForm) => {
+const AddVisitorForm = () => {
+  const onSubmit = (values: TVisitorForm) => {
     console.log('values', values)
+    const visitor = (({ name, email, department }) => ({ name, email, department }))(values)
+    GuestBookStore.update((s) => {
+      s.visitors = [visitor, ...s.visitors]
+    })
   }
 
   return (
@@ -94,4 +99,4 @@ const AddGuestForm = () => {
   )
 }
 
-export default AddGuestForm
+export default AddVisitorForm
