@@ -1,12 +1,12 @@
 import { Card, CardContent, CardActions, Typography } from '@mui/material'
 import { Form, Field } from 'react-final-form'
-import type { TGuest } from 'types'
-import { ResetButton, SubmitButton, TextInput, SelectInput } from './widgets'
+import type { TGuestForm } from 'types'
+import { ResetButton, SubmitButton, TextInput, SelectInput, CheckboxInput } from './widgets'
 
 const DEPARTMENTS = ['Marketing', 'IT', 'Sales', 'Management', 'Accounting']
 
 const AddGuestForm = () => {
-  const onSubmit = (values: TGuest) => {
+  const onSubmit = (values: TGuestForm) => {
     console.log('values', values)
   }
 
@@ -21,7 +21,7 @@ const AddGuestForm = () => {
           }
           return errors
         }}
-        render={({ submitError, handleSubmit, form, submitting, pristine }) => (
+        render={({ submitError, handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
             <CardContent>
               <Typography variant='h6'>Add new visitor</Typography>
@@ -61,7 +61,16 @@ const AddGuestForm = () => {
                     }))}
                     value={input.value}
                     onChange={input.onChange}
-                    required={true}
+                    disabled={submitting}
+                  />
+                )}
+              </Field>
+              <Field name='agreement' type='checkbox'>
+                {({ input }) => (
+                  <CheckboxInput
+                    label='I agree to be added to the table'
+                    checked={input.checked}
+                    onChange={input.onChange}
                     disabled={submitting}
                   />
                 )}
@@ -76,7 +85,7 @@ const AddGuestForm = () => {
                 }}
                 disabled={submitting || pristine}
               />
-              <SubmitButton disabled={submitting} />
+              <SubmitButton disabled={!values.agreement || submitting} />
             </CardActions>
           </form>
         )}

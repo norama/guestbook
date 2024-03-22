@@ -7,16 +7,14 @@ interface ITextInput {
   options: TSelectOptions[]
   value: string
   onChange: (event: ChangeEvent) => void
-  required?: boolean
   disabled?: boolean
 }
 
-const SelectInput = ({ label, options, value, onChange, required, disabled }: ITextInput) => (
+const SelectInput = ({ label, options, value, onChange, disabled }: ITextInput) => (
   <Box marginTop={3}>
     <TextField
       value={value}
       onChange={onChange}
-      required={required}
       disabled={disabled}
       select
       fullWidth
