@@ -5,3 +5,8 @@ export type TGuest = {
   email: string
   department: TDepartment
 }
+
+export type TSelectOptions = {
+  label: string
+  value: string
+}
