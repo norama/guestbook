@@ -3,16 +3,23 @@ import { Form, Field } from 'react-final-form'
 import type { TVisitorForm } from 'types'
 import { ResetButton, SubmitButton, TextInput, SelectInput, CheckboxInput } from './widgets'
 import { GuestBookStore } from 'stores'
+import { FormApi } from 'final-form'
 
 const DEPARTMENTS = ['Marketing', 'IT', 'Sales', 'Management', 'Accounting']
 
 const AddVisitorForm = () => {
-  const onSubmit = (values: TVisitorForm) => {
+  const resetForm = (form: FormApi<TVisitorForm, Partial<TVisitorForm>>) => {
+    form.resetFieldState('email')
+    form.reset({ department: 'Marketing' })
+  }
+
+  const onSubmit = (values: TVisitorForm, form: FormApi<TVisitorForm, Partial<TVisitorForm>>) => {
     console.log('values', values)
     const visitor = (({ name, email, department }) => ({ name, email, department }))(values)
     GuestBookStore.update((s) => {
       s.visitors = [visitor, ...s.visitors]
     })
+    resetForm(form)
   }
 
   return (
@@ -83,13 +90,7 @@ const AddVisitorForm = () => {
               {submitError && <div className='error'>{submitError}</div>}
             </CardContent>
             <CardActions sx={{ padding: 2, gap: 2 }}>
-              <ResetButton
-                onClick={() => {
-                  form.resetFieldState('email')
-                  form.reset({ department: 'Marketing' })
-                }}
-                disabled={submitting || pristine}
-              />
+              <ResetButton onClick={() => resetForm(form)} disabled={submitting || pristine} />
               <SubmitButton disabled={!values.agreement || submitting} />
             </CardActions>
           </form>
