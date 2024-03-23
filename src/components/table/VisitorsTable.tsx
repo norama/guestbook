@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Box, Card, CardContent, Typography } from '@mui/material'
 import {
   DataGrid,
@@ -6,7 +7,7 @@ import {
   GridRenderCellParams,
 } from '@mui/x-data-grid'
 import { ColoredChip, RemoveButton } from './widgets'
-import { GuestBookStore } from 'stores'
+import { GuestBookStore, removeVisitors } from 'stores'
 import { TDepartment } from 'types'
 
 const COLORS: Record<TDepartment, string> = {
@@ -51,6 +52,7 @@ const COLUMNS: GridColDef[] = [
 ]
 
 const VisitorsTable = () => {
+  const [selectedIds, setSelectedIds] = useState<string[]>([])
   const visitors = GuestBookStore.useState((s) => s.visitors)
 
   return (
@@ -58,18 +60,18 @@ const VisitorsTable = () => {
       <CardContent sx={{ padding: 0 }}>
         <Box sx={{ padding: 2 }}>
           <Typography variant='h5'>Visitor management</Typography>
-          <RemoveButton disabled={false} onClick={() => {}} />
+          <RemoveButton
+            disabled={!selectedIds.length}
+            onClick={() => removeVisitors(selectedIds)}
+          />
         </Box>
         <DataGrid
+          sx={{ border: 'none', padding: 0 }}
           checkboxSelection
           autoHeight
           rows={visitors}
           columns={COLUMNS}
-          onRowClick={(e) => console.log(e)}
-          onRowSelectionModelChange={(e) => console.log(e)}
-          sx={{ border: 'none', padding: 0 }}
-          //You can see the ID in the console and when you click on any row you can see where the ID is present
-          // {...data}
+          onRowSelectionModelChange={(ids) => setSelectedIds(ids as string[])}
         />
       </CardContent>
     </Card>

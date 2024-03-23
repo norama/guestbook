@@ -1,5 +1,6 @@
 import { Store } from 'pullstate'
-import type { TVisitorStore } from 'types'
+import { v4 as uuid } from 'uuid'
+import type { TVisitor, TVisitorStore } from 'types'
 
 interface IGuestBookStore {
   visitors: TVisitorStore[]
@@ -8,3 +9,15 @@ interface IGuestBookStore {
 export const GuestBookStore = new Store<IGuestBookStore>({
   visitors: [],
 })
+
+export const addVisitor = (visitor: TVisitor) => {
+  GuestBookStore.update((s) => {
+    s.visitors = [{ ...visitor, id: uuid() }, ...s.visitors]
+  })
+}
+
+export const removeVisitors = (ids: string[]) => {
+  GuestBookStore.update((s) => {
+    s.visitors = s.visitors.filter((visitor) => !ids.includes(visitor.id))
+  })
+}

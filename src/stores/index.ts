@@ -1,1 +1,1 @@
-export { GuestBookStore } from './guestbook'
+export { GuestBookStore, addVisitor, removeVisitors } from './guestbook'

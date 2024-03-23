@@ -2,9 +2,8 @@ import { Card, CardContent, CardActions, Typography } from '@mui/material'
 import { Form, Field } from 'react-final-form'
 import type { TVisitorForm } from 'types'
 import { ResetButton, SubmitButton, TextInput, SelectInput, CheckboxInput } from './widgets'
-import { GuestBookStore } from 'stores'
+import { addVisitor } from 'stores'
 import { FormApi } from 'final-form'
-import { v4 as uuid } from 'uuid'
 
 const DEPARTMENTS = ['Marketing', 'IT', 'Sales', 'Management', 'Accounting']
 
@@ -22,11 +21,8 @@ const AddVisitorForm = () => {
       name: values.name,
       email: values.email,
       department: values.department,
-      id: uuid(),
     }
-    GuestBookStore.update((s) => {
-      s.visitors = [visitor, ...s.visitors]
-    })
+    addVisitor(visitor)
     resetForm(form)
   }
 
