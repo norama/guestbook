@@ -4,6 +4,7 @@ import type { TVisitorForm } from 'types'
 import { ResetButton, SubmitButton, TextInput, SelectInput, CheckboxInput } from './widgets'
 import { GuestBookStore } from 'stores'
 import { FormApi } from 'final-form'
+import { v4 as uuid } from 'uuid'
 
 const DEPARTMENTS = ['Marketing', 'IT', 'Sales', 'Management', 'Accounting']
 
@@ -13,9 +14,16 @@ const AddVisitorForm = () => {
     form.reset({ department: 'Marketing' })
   }
 
-  const onSubmit = (values: TVisitorForm, form: FormApi<TVisitorForm, Partial<TVisitorForm>>) => {
-    console.log('values', values)
-    const visitor = (({ name, email, department }) => ({ name, email, department }))(values)
+  const handleSubmit = (
+    values: TVisitorForm,
+    form: FormApi<TVisitorForm, Partial<TVisitorForm>>,
+  ) => {
+    const visitor = {
+      name: values.name,
+      email: values.email,
+      department: values.department,
+      id: uuid(),
+    }
     GuestBookStore.update((s) => {
       s.visitors = [visitor, ...s.visitors]
     })
@@ -23,9 +31,9 @@ const AddVisitorForm = () => {
   }
 
   return (
-    <Card sx={{ minWidth: 350 }}>
+    <Card sx={{ minWidth: 350, height: 'fit-content' }}>
       <Form
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         validate={(values) => {
           const errors: Record<string, string> = {}
           if (!values.email) {

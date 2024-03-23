@@ -26,7 +26,7 @@ const TextInput = ({ label, value, onChange, required, disabled, error }: ITextI
     </Box>
     {error && (
       <Box display='flex' width='100%' justifyContent='end'>
-        <Typography variant='subtitle2' color='primary'>
+        <Typography variant='subtitle2' color='error'>
           {error}
         </Typography>
       </Box>

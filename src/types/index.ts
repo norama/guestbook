@@ -10,6 +10,10 @@ export type TVisitorForm = TVisitor & {
   agreement: boolean
 }
 
+export type TVisitorStore = TVisitor & {
+  id: string
+}
+
 export type TSelectOptions = {
   label: string
   value: string
