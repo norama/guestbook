@@ -10,6 +10,12 @@ export const GuestBookStore = new Store<IGuestBookStore>({
   visitors: [],
 })
 
+export const setVisitors = (visitors: TVisitorStore[]) => {
+  GuestBookStore.update((s) => {
+    s.visitors = [...visitors]
+  })
+}
+
 export const addVisitor = (visitor: TVisitor) => {
   GuestBookStore.update((s) => {
     s.visitors = [{ ...visitor, id: uuid() }, ...s.visitors]
