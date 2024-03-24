@@ -48,6 +48,24 @@ Deploy to github pages by
 npm run deploy
 ```
 
+## End-to-end tests
+
+Test with [Cypress](https://www.cypress.io/)
+
+- run in development mode:
+
+```
+npm run dev
+```
+
+- open cypress:
+
+```
+npm run cypress:open
+```
+
+Then select `E2E Testing` option, then `Chrome` browser and load the `guestbook.cy.js` test suite.
+
 ## Technical stack
 
 The application is written in `React + TypeScript + Vite`:
@@ -55,6 +73,10 @@ The application is written in `React + TypeScript + Vite`:
 - [React](https://react.dev/) for javascript web application framework
 - [TypeScript](https://www.typescriptlang.org/) for type safety
 - [Vite](https://vitejs.dev/) for build
+
+End-to-end tests written in
+
+- [Cypress](https://www.cypress.io/)
 
 Additional libraries:
 
