@@ -52,6 +52,7 @@ const AddVisitorForm = () => {
                     onChange={input.onChange}
                     disabled={submitting}
                     error={meta.touched ? meta.error : null}
+                    inputProps={{ 'data-cy': 'name' }}
                   />
                 )}
               </Field>
@@ -64,6 +65,7 @@ const AddVisitorForm = () => {
                     required={true}
                     disabled={submitting}
                     error={meta.touched ? meta.error : null}
+                    inputProps={{ 'data-cy': 'email' }}
                   />
                 )}
               </Field>
@@ -78,6 +80,7 @@ const AddVisitorForm = () => {
                     value={input.value}
                     onChange={input.onChange}
                     disabled={submitting}
+                    inputProps={{ 'data-cy': 'department' }}
                   />
                 )}
               </Field>
@@ -88,6 +91,7 @@ const AddVisitorForm = () => {
                     checked={input.checked}
                     onChange={input.onChange}
                     disabled={submitting}
+                    inputProps={{ 'data-cy': 'agreement' }}
                   />
                 )}
               </Field>

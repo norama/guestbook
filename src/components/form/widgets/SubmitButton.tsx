@@ -8,6 +8,7 @@ interface ISubmitButton {
 const SubmitButton = ({ disabled }: ISubmitButton) => (
   <Button
     type='submit'
+    data-cy='submit'
     formNoValidate
     disabled={disabled}
     sx={{

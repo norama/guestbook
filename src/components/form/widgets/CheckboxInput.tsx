@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material'
+import { Box, Checkbox, FormControlLabel, InputBaseComponentProps, Typography } from '@mui/material'
 import { ChangeEvent } from 'react'
 
 interface ICheckboxInput {
@@ -7,13 +7,28 @@ interface ICheckboxInput {
   onChange: (event: ChangeEvent) => void
   required?: boolean
   disabled?: boolean
+  inputProps?: InputBaseComponentProps
 }
 
-const CheckboxInput = ({ label, checked, onChange, required, disabled }: ICheckboxInput) => (
+const CheckboxInput = ({
+  label,
+  checked,
+  onChange,
+  required,
+  disabled,
+  inputProps,
+}: ICheckboxInput) => (
   <Box marginTop={3}>
     <FormControlLabel
       required={required}
-      control={<Checkbox checked={!!checked} onChange={onChange} disabled={disabled} />}
+      control={
+        <Checkbox
+          checked={!!checked}
+          onChange={onChange}
+          disabled={disabled}
+          inputProps={inputProps}
+        />
+      }
       label={<Typography variant='subtitle2'>{label}</Typography>}
     />
   </Box>

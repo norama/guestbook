@@ -8,6 +8,7 @@ interface IResetButton {
 
 const ResetButton = ({ onClick, disabled }: IResetButton) => (
   <Button
+    data-cy='reset'
     type='button'
     onClick={onClick}
     disabled={disabled}

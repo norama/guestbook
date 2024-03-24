@@ -1,4 +1,4 @@
-import { Box, TextField, Typography } from '@mui/material'
+import { Box, InputBaseComponentProps, TextField, Typography } from '@mui/material'
 import { ChangeEvent } from 'react'
 
 interface ITextInput {
@@ -8,9 +8,18 @@ interface ITextInput {
   required?: boolean
   disabled?: boolean
   error?: string | null
+  inputProps?: InputBaseComponentProps
 }
 
-const TextInput = ({ label, value, onChange, required, disabled, error }: ITextInput) => (
+const TextInput = ({
+  label,
+  value,
+  onChange,
+  required,
+  disabled,
+  error,
+  inputProps,
+}: ITextInput) => (
   <div>
     <Box marginTop={3}>
       <TextField
@@ -21,6 +30,7 @@ const TextInput = ({ label, value, onChange, required, disabled, error }: ITextI
         fullWidth
         size='small'
         label={label}
+        inputProps={inputProps}
         InputLabelProps={{ shrink: true }}
       />
     </Box>

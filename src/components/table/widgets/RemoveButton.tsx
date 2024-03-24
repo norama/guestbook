@@ -7,6 +7,7 @@ interface IRemoveButton {
 
 const RemoveButton = ({ onClick, disabled }: IRemoveButton) => (
   <Button
+    data-cy='remove'
     type='button'
     onClick={onClick}
     disabled={disabled}
