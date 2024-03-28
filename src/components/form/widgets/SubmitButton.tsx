@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material'
+import { Button } from '@mui/material'
 import { Person } from '@mui/icons-material'
 
 interface ISubmitButton {
@@ -8,10 +8,9 @@ interface ISubmitButton {
 const SubmitButton = ({ disabled }: ISubmitButton) => (
   <Button
     type='submit'
-    formNoValidate
+    startIcon={<Person />}
     disabled={disabled}
     sx={{
-      borderRadius: 50,
       pt: 1,
       pb: 1,
       pr: 4,
@@ -19,10 +18,7 @@ const SubmitButton = ({ disabled }: ISubmitButton) => (
     }}
     variant='contained'
     size='small'>
-    <Person />
-    <Typography variant='button' sx={{ ml: 1 }}>
-      Add new visitor
-    </Typography>
+    ADD NEW VISITOR
   </Button>
 )
 

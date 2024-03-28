@@ -5,16 +5,26 @@ interface ITextInput {
   label: string
   value: string
   onChange: (event: ChangeEvent) => void
+  type?: string
   required?: boolean
   disabled?: boolean
   error?: string | null
 }
 
-const TextInput = ({ label, value, onChange, required, disabled, error }: ITextInput) => (
+const TextInput = ({
+  label,
+  value,
+  onChange,
+  type = 'text',
+  required,
+  disabled,
+  error,
+}: ITextInput) => (
   <div>
     <Box marginTop={3}>
       <TextField
         value={value}
+        type={type}
         onChange={onChange}
         required={required}
         disabled={disabled}

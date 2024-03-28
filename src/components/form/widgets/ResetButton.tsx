@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material'
+import { Button } from '@mui/material'
 import { Restore } from '@mui/icons-material'
 
 interface IResetButton {
@@ -9,10 +9,10 @@ interface IResetButton {
 const ResetButton = ({ onClick, disabled }: IResetButton) => (
   <Button
     type='button'
+    startIcon={<Restore />}
     onClick={onClick}
     disabled={disabled}
     sx={{
-      borderRadius: 50,
       pt: 1,
       pb: 1,
       pr: 2,
@@ -20,10 +20,7 @@ const ResetButton = ({ onClick, disabled }: IResetButton) => (
     }}
     variant='outlined'
     size='small'>
-    <Restore />
-    <Typography variant='button' sx={{ ml: 1 }}>
-      Reset form
-    </Typography>
+    RESET FORM
   </Button>
 )
 

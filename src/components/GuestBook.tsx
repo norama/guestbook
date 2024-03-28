@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Grid } from '@mui/material'
 import GuestBookHeader from './header/GuestBookHeader'
 import AddVisitorForm from './form/AddVisitorForm'
 import VisitorsTable from './table/VisitorsTable'
@@ -10,10 +10,14 @@ const GuestBook = () => {
   return (
     <>
       <GuestBookHeader />
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5, padding: 5 }}>
-        <AddVisitorForm />
-        <VisitorsTable />
-      </Box>
+      <Grid container padding={2} spacing={2}>
+        <Grid item xs={8} md={4}>
+          <AddVisitorForm />
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <VisitorsTable />
+        </Grid>
+      </Grid>
     </>
   )
 }

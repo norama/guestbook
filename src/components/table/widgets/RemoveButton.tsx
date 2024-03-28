@@ -11,7 +11,6 @@ const RemoveButton = ({ onClick, disabled }: IRemoveButton) => (
     onClick={onClick}
     disabled={disabled}
     sx={{
-      borderRadius: 50,
       pt: 1,
       pr: 2,
       pb: 1,

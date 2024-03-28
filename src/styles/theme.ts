@@ -28,6 +28,15 @@ const theme = createTheme({
       contrastText: '#FFFFFF',
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 50,
+        },
+      },
+    },
+  },
 })
 
 export default theme

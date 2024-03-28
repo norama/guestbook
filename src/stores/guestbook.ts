@@ -27,3 +27,6 @@ export const removeVisitors = (ids: string[]) => {
     s.visitors = s.visitors.filter((visitor) => !ids.includes(visitor.id))
   })
 }
+
+export const checkVisitorEmail = (email: string) =>
+  !GuestBookStore.getRawState().visitors.find((visitor) => visitor.email === email)

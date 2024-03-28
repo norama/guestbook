@@ -4,6 +4,7 @@ import type { TVisitorForm } from 'types'
 import { ResetButton, SubmitButton, TextInput, SelectInput, CheckboxInput } from './widgets'
 import { addVisitor } from 'stores'
 import { FormApi } from 'final-form'
+import { checkVisitorEmail } from 'stores/guestbook'
 
 const DEPARTMENTS = ['Marketing', 'IT', 'Sales', 'Management', 'Accounting']
 
@@ -34,6 +35,8 @@ const AddVisitorForm = () => {
           const errors: Record<string, string> = {}
           if (!values.email) {
             errors.email = 'Email is required'
+          } else if (!checkVisitorEmail(values.email)) {
+            errors.email = 'Visitor with this email already exists'
           }
           return errors
         }}
@@ -61,6 +64,7 @@ const AddVisitorForm = () => {
                     label='Email address'
                     value={input.value}
                     onChange={input.onChange}
+                    type='email'
                     required={true}
                     disabled={submitting}
                     error={meta.touched ? meta.error : null}
@@ -93,7 +97,7 @@ const AddVisitorForm = () => {
               </Field>
               {submitError && <div className='error'>{submitError}</div>}
             </CardContent>
-            <CardActions sx={{ padding: 2, gap: 2 }}>
+            <CardActions sx={{ padding: 2, gap: 2, whiteSpace: 'nowrap' }}>
               <ResetButton onClick={() => resetForm(form)} disabled={submitting || pristine} />
               <SubmitButton disabled={!values.agreement || submitting} />
             </CardActions>
