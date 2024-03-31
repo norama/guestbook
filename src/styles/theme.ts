@@ -29,6 +29,21 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Roboto',
+          lineHeight: 1.5,
+          fontWeight: 400,
+        },
+        body: {
+          margin: 0,
+          minWidth: '320px',
+          minHeight: '100vh',
+          backgroundColor: '#f9f9f9',
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
