@@ -3,7 +3,7 @@ import { Favorite } from '@mui/icons-material'
 
 const GuestBookHeader = () => (
   <AppBar position='static'>
-    <Toolbar sx={{ paddingLeft: 0 }}>
+    <Toolbar>
       <IconButton size='large' color='inherit'>
         <Favorite />
       </IconButton>

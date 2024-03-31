@@ -51,13 +51,43 @@ const theme = createTheme({
         InputLabelProps: { shrink: true },
       },
     },
-    MuiButton: {
-      defaultProps: {
-        size: 'medium',
-      },
+    MuiButtonBase: {
       styleOverrides: {
         root: {
+          padding: 40,
           borderRadius: 50,
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          padding: 40,
+          borderRadius: 50,
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: { minWidth: 400 },
+      },
+    },
+    MuiCardActions: {
+      styleOverrides: {
+        root: {
+          margin: 4,
+          padding: 10,
+          gap: 10,
+          whiteSpace: 'nowrap',
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          textTransform: 'uppercase',
+          fontWeight: 500,
+          letterSpacing: 1.4,
         },
       },
     },

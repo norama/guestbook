@@ -7,6 +7,12 @@ import { FormApi } from 'final-form'
 import { checkVisitorEmail } from 'stores/guestbook'
 
 const DEPARTMENTS = ['Marketing', 'IT', 'Sales', 'Management', 'Accounting']
+const OPTIONS = DEPARTMENTS.map((department) => ({
+  label: department,
+  value: department,
+}))
+
+const DEF_DEPARTMENT = 'Marketing'
 
 const AddVisitorForm = () => {
   const resetForm = (form: FormApi<TVisitorForm, Partial<TVisitorForm>>) => {
@@ -15,38 +21,33 @@ const AddVisitorForm = () => {
   }
 
   const handleSubmit = (
-    values: TVisitorForm,
+    { name, email, department }: TVisitorForm,
     form: FormApi<TVisitorForm, Partial<TVisitorForm>>,
   ) => {
-    const visitor = {
-      name: values.name,
-      email: values.email,
-      department: values.department,
-    }
-    addVisitor(visitor)
+    addVisitor({ name, email, department })
     resetForm(form)
   }
 
+  const validateForm = (values: TVisitorForm) => {
+    const errors: Record<string, string> = {}
+    if (!values.email) {
+      errors.email = 'Email is required'
+    } else if (!checkVisitorEmail(values.email)) {
+      errors.email = 'Visitor with this email already exists'
+    }
+    return errors
+  }
+
   return (
-    <Card sx={{ minWidth: 350, height: 'fit-content' }}>
+    <Card>
       <Form
         onSubmit={handleSubmit}
-        validate={(values) => {
-          const errors: Record<string, string> = {}
-          if (!values.email) {
-            errors.email = 'Email is required'
-          } else if (!checkVisitorEmail(values.email)) {
-            errors.email = 'Visitor with this email already exists'
-          }
-          return errors
-        }}
+        validate={validateForm}
         render={({ submitError, handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
             <CardContent>
               <Typography variant='h6'>Add new visitor</Typography>
-              <Typography variant='body2' component='div'>
-                Fill name, email address and the department.
-              </Typography>
+              <Typography variant='body2'>Fill name, email address and the department.</Typography>
               <Field name='name'>
                 {({ input, meta }) => (
                   <TextInput
@@ -71,14 +72,11 @@ const AddVisitorForm = () => {
                   />
                 )}
               </Field>
-              <Field name='department' defaultValue='Marketing'>
+              <Field name='department' defaultValue={DEF_DEPARTMENT}>
                 {({ input }) => (
                   <SelectInput
                     label='Department'
-                    options={DEPARTMENTS.map((department) => ({
-                      label: department,
-                      value: department,
-                    }))}
+                    options={OPTIONS}
                     value={input.value}
                     onChange={input.onChange}
                     disabled={submitting}
@@ -97,7 +95,7 @@ const AddVisitorForm = () => {
               </Field>
               {submitError && <div className='error'>{submitError}</div>}
             </CardContent>
-            <CardActions sx={{ padding: 2, gap: 2, whiteSpace: 'nowrap' }}>
+            <CardActions>
               <ResetButton onClick={() => resetForm(form)} disabled={submitting || pristine} />
               <SubmitButton disabled={!values.agreement || submitting} />
             </CardActions>

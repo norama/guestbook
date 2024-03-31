@@ -6,12 +6,7 @@ interface IColoredChip {
 }
 
 const ColoredChip = ({ color, label }: IColoredChip) => (
-  <Chip
-    label={label}
-    size='medium'
-    color={color as ChipOwnProps['color']}
-    sx={{ textTransform: 'uppercase' }}
-  />
+  <Chip label={label} color={color as ChipOwnProps['color']} />
 )
 
 export default ColoredChip
