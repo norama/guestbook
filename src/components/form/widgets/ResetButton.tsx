@@ -16,10 +16,10 @@ const ResetButton = ({ onClick, disabled }: IResetButton) => (
       pt: 1,
       pb: 1,
       pr: 2,
-      pl: 1,
+      pl: 2,
     }}
     variant='outlined'
-    size='small'>
+    size='medium'>
     RESET FORM
   </Button>
 )

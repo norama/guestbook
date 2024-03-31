@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material'
+import { Button } from '@mui/material'
 
 interface IRemoveButton {
   onClick: () => void
@@ -14,15 +14,13 @@ const RemoveButton = ({ onClick, disabled }: IRemoveButton) => (
       pt: 1,
       pr: 2,
       pb: 1,
-      pl: 1,
+      pl: 2,
       mt: 3,
       mb: 1,
     }}
     variant='contained'
-    size='small'>
-    <Typography variant='button' sx={{ ml: 1 }}>
-      Remove
-    </Typography>
+    size='medium'>
+    REMOVE
   </Button>
 )
 
