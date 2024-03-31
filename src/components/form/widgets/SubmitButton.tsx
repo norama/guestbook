@@ -16,8 +16,7 @@ const SubmitButton = ({ disabled }: ISubmitButton) => (
       pr: 3,
       pl: 3,
     }}
-    variant='contained'
-    size='medium'>
+    variant='contained'>
     ADD NEW VISITOR
   </Button>
 )

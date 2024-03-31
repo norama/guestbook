@@ -1,4 +1,4 @@
-import { Box, TextField, Typography } from '@mui/material'
+import { TextField } from '@mui/material'
 import { ChangeEvent } from 'react'
 
 interface ITextInput {
@@ -20,28 +20,17 @@ const TextInput = ({
   disabled,
   error,
 }: ITextInput) => (
-  <div>
-    <Box marginTop={3}>
-      <TextField
-        value={value}
-        type={type}
-        onChange={onChange}
-        required={required}
-        disabled={disabled}
-        fullWidth
-        size='small'
-        label={label}
-        InputLabelProps={{ shrink: true }}
-      />
-    </Box>
-    {error && (
-      <Box display='flex' width='100%' justifyContent='end'>
-        <Typography variant='subtitle2' color='error'>
-          {error}
-        </Typography>
-      </Box>
-    )}
-  </div>
+  <TextField
+    sx={{ mt: 3 }}
+    value={value}
+    type={type}
+    onChange={onChange}
+    required={required}
+    disabled={disabled}
+    label={label}
+    error={!!error}
+    helperText={error}
+  />
 )
 
 export default TextInput

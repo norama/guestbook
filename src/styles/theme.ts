@@ -44,7 +44,17 @@ const theme = createTheme({
         },
       },
     },
+    MuiTextField: {
+      defaultProps: {
+        size: 'small',
+        fullWidth: true,
+        InputLabelProps: { shrink: true },
+      },
+    },
     MuiButton: {
+      defaultProps: {
+        size: 'medium',
+      },
       styleOverrides: {
         root: {
           borderRadius: 50,

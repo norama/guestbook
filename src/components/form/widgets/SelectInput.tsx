@@ -1,4 +1,4 @@
-import { Box, MenuItem, TextField } from '@mui/material'
+import { MenuItem, TextField } from '@mui/material'
 import { ChangeEvent } from 'react'
 import { TSelectOptions } from 'types'
 
@@ -11,23 +11,19 @@ interface ITextInput {
 }
 
 const SelectInput = ({ label, options, value, onChange, disabled }: ITextInput) => (
-  <Box marginTop={3}>
-    <TextField
-      value={value}
-      onChange={onChange}
-      disabled={disabled}
-      select
-      fullWidth
-      size='small'
-      label={label}
-      InputLabelProps={{ shrink: true }}>
-      {options.map((option) => (
-        <MenuItem value={option.value} key={option.value}>
-          {option.label}
-        </MenuItem>
-      ))}
-    </TextField>
-  </Box>
+  <TextField
+    sx={{ mt: 3 }}
+    value={value}
+    onChange={onChange}
+    disabled={disabled}
+    select
+    label={label}>
+    {options.map((option) => (
+      <MenuItem value={option.value} key={option.value}>
+        {option.label}
+      </MenuItem>
+    ))}
+  </TextField>
 )
 
 export default SelectInput

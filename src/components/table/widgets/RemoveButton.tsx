@@ -18,8 +18,7 @@ const RemoveButton = ({ onClick, disabled }: IRemoveButton) => (
       mt: 3,
       mb: 1,
     }}
-    variant='contained'
-    size='medium'>
+    variant='contained'>
     REMOVE
   </Button>
 )
